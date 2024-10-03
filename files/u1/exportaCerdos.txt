@@ -1,0 +1,12 @@
+uno
+10
+raza1
+si
+dos
+11
+raza2
+no
+tres
+12
+raza3
+no
