@@ -20,17 +20,17 @@ public class PersonasMain {
     }
 
     private static ArrayList<Persona> importar(File f) {
-        //TODO
+        //TODO el viernes
         return null;
     }
 
     private static boolean exportar(File f, ArrayList<Persona> personas) {
-        //TODO
+        //TODO el viernes
         return false;
     }
 
     private static ArrayList<Persona> exportarV2(File f) {
-        //TODO
+        //TODO el viernes
         return null;
     }
 }
