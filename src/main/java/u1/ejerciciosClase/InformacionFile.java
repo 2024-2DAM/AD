@@ -33,7 +33,7 @@ public class InformacionFile {
                 System.out.println("Tiene permisos de ejecución");
             }
 
-            //5. En caso de ser carpeta, muestra todo su contenido.
+            //5. En caso de ser carpeta, muestra su contenido.
             if (f.isDirectory()) {
                 File[] contenido = f.listFiles();
                 for (File cont : contenido) {

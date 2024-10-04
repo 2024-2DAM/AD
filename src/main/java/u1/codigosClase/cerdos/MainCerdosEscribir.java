@@ -32,8 +32,5 @@ public class MainCerdosEscribir {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        //TODO: Lee una línea extra?
     }
 }

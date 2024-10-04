@@ -1,12 +1,11 @@
 package u1.ejerciciosClase;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PersonasMain {
     public static void main(String[] args) {
-        File f = new File("./files/personas.txt");
+        File f = new File("./files/u1/personas.txt");
         //Ejercicio 7
         List<Persona> personas = importar(f);
         System.out.println(personas);

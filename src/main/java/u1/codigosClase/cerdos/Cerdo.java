@@ -1,6 +1,8 @@
 package u1.codigosClase.cerdos;
 
-public class Cerdo {
+import java.io.Serializable;
+
+public class Cerdo implements Serializable {
     private String nombre;
     private int edad;
     private String raza;
@@ -30,7 +32,7 @@ public class Cerdo {
     }
 
     /**
-     * Este método transforma a String un objeto. Lo utilizamos
+     * Transforma a String un objeto. Lo utilizamos
      * para guardar en el fichero con el formato de exportación
      * adecuado.
      * @return String con el objeto convertido a cadena.
