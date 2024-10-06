@@ -1,6 +1,6 @@
 package u1.codigosClase.personas;
 
-import java.util.List;
+import java.util.Objects;
 
 public class Persona {
     private String id;
@@ -13,6 +13,19 @@ public class Persona {
         this.name = name;
         this.age = age;
         this.isEmployed = isEmployed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(id, persona.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestorPersonas {
-    private static ArrayList<Persona> personas = new ArrayList<Persona>();
+    private static ArrayList<Persona> personas = new ArrayList<>();
 
     public static void main(String[] args) {
 
@@ -60,7 +60,8 @@ public class GestorPersonas {
         }
         System.out.print("id de la persona que quieres dar de baja: ");
         //TODO terminar esta parte: 1) comprobar que existe el id, 2) eliminar a esa persona del ArrayList.
-        System.out.println("TODO");
+        //System.out.println("TODO");
+        //if ()
     }
 
 
