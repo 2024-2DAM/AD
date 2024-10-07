@@ -1,8 +1,8 @@
 package u1.codigosClase.personas;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Persona {
+public class Persona implements Serializable {
     private String id;
     private String name;
     private int age;

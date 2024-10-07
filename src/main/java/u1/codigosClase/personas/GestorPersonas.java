@@ -1,13 +1,19 @@
 package u1.codigosClase.personas;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestorPersonas {
+
     private static ArrayList<Persona> personas = new ArrayList<Persona>();
 
     public static void main(String[] args) {
 
+        /* PERSISTENCIA: al iniciar el programa verifico si existe el fichero en el que guardo los datos,
+        y si existe, los recupero para trabajar con ellos.
+         */
+        personas = leerDatos();
         Scanner sc = new Scanner(System.in);
         int opcion = -1;
 
@@ -26,12 +32,42 @@ public class GestorPersonas {
                     break;
                 case 0:
                     System.out.println("Hasta pronto!");
+                    // PERSISTENCIA: al terminar el programa, guardo todos los datos en ./files/u1/gestorpersonas
+                    guardarDatos();
                     break;
                 default:
                     System.out.println("Elige una opción válida.");
             }
         }
+    }
 
+    /**
+     *
+     * @return ArrayList con las personas leídas del fichero. Si el fichero no existía devuelve un ArrayList vacío
+     */
+    private static ArrayList<Persona> leerDatos() {
+        ArrayList<Persona> personas = new ArrayList<>();
+        //Si no existe el fichero gestorpersonas NO PASA NADA, continúa la ejecución normal
+        // SI existe, leo los datos y devuelvo el arrayList.
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("./files/u1/gestorpersonas"))) {
+            personas = (ArrayList<Persona>) ois.readObject();
+        } catch (FileNotFoundException e) {
+            System.out.println("El fichero de personas no existe");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return personas;
+    }
+
+    private static void guardarDatos() {
+        //Guardar en un fichero binario el arrayList con todas las personas
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("./files/u1/gestorpersonas"));) {
+            oos.writeObject(personas);  //peronas es de tipo ArrayList<Persona>
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void alta() {
