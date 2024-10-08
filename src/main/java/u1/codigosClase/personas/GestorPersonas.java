@@ -2,6 +2,7 @@ package u1.codigosClase.personas;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GestorPersonas {
@@ -20,15 +21,19 @@ public class GestorPersonas {
         while (opcion != 0) {
             System.out.println("1. Dar de alta");
             System.out.println("2. Eliminar");
+            System.out.println("3. Mostrar");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
-            opcion = sc.nextInt(); //TODO Control de erores: que el programa no finalice si introduce algo que no es un número
+            opcion = leerNumero();
             switch (opcion) {
                 case 1:
                     alta();
                     break;
                 case 2:
                     baja();
+                    break;
+                case 3:
+                    mostrar();
                     break;
                 case 0:
                     System.out.println("Hasta pronto!");
@@ -41,8 +46,29 @@ public class GestorPersonas {
         }
     }
 
+    public static int leerNumero() {
+        Scanner sc = new Scanner(System.in);
+        int numero = -1;
+        boolean repetir = true;
+        while(repetir) {
+            try {
+                numero = sc.nextInt();
+                repetir = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Tienes que introducir un número");
+                sc.nextLine();
+            }
+        }
+        return numero;
+    }
+
+    private static boolean leerSN() {
+        //TODO
+        return false;
+    }
+
+
     /**
-     *
      * @return ArrayList con las personas leídas del fichero. Si el fichero no existía devuelve un ArrayList vacío
      */
     private static ArrayList<Persona> leerDatos() {
@@ -82,12 +108,15 @@ public class GestorPersonas {
         int edad = scInt.nextInt();
         System.out.println("Tiene trabajo? [s/n]: ");
         String t = sc.nextLine().toLowerCase();
-        boolean trabajo = false;
-        if (t.contains("s")) {
-            trabajo = true; //TODO control de errores: verificar que mete "s" o "n" (sin importar mayúsuclas/minúsculas). Que siga preguntándolo hasta que meta s/n.
-        }
+        //boolean trabajo = false;
+//        if (t.contains("s")) {
+//            trabajo = true;
+//        }
+        boolean trabajo = leerSN();
         personas.add(new Persona(id, nombre, edad, trabajo));
     }
+
+
 
     private static void baja() {
         System.out.println("*** BAJA ***");
@@ -96,8 +125,23 @@ public class GestorPersonas {
         }
         System.out.print("id de la persona que quieres dar de baja: ");
         //TODO terminar esta parte: 1) comprobar que existe el id, 2) eliminar a esa persona del ArrayList.
-        System.out.println("TODO");
+        Scanner sc = new Scanner(System.in);
+        String id = sc.nextLine();
+        personas.remove(new Persona(id));
+//        for (Persona p : personas) {
+//            if (p.getId().equals(id)){
+//                personas.remove(p);
+//                break;
+//            }
+//        }
     }
 
-
+    /**
+     * Muestra todas las personas que hay en el ArrayLIst del programa
+     */
+    private static void mostrar() {
+        for (Persona p : personas) {
+            System.out.println(p);
+        }
+    }
 }
